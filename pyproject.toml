@@ -5,7 +5,7 @@ authors = [
     { name = "UPB-LEA" },
 ]
 description = "Generate clearance rules for KiCAD by a table."
-readme = "README.md"
+readme = "README.rst"
 requires-python = "~=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
