@@ -1,9 +1,9 @@
-.. PyKicadClearance documentation master file, created by
+.. KiClearance documentation master file, created by
    sphinx-quickstart on Wed May  8 10:34:43 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to PyKicadClearance's documentation!
+Welcome to KiClearance's documentation!
 ============================================
 
 .. toctree::

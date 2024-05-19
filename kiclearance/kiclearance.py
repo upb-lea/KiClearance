@@ -20,6 +20,10 @@ def write_design_rule_file(clearance_table_data, folder, kicad_project_name: str
     :type kicad_project_name: str
     :param factor_inner_layers: distance factor for inner layers distance. Default is 0.5
     :type factor_inner_layers: float
+    :param min_track_distance: minimum track distance in mm
+    :type min_track_distance: float
+    :param folder: directory
+    :type folder: str
 
     """
     start_comment = "# Auto-Generated for voltage distances - start"

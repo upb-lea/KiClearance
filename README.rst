@@ -21,7 +21,7 @@ Usage
 ---------------------------------------
 
 Create a table (clearance.ods/xls/csv) in your KiCad project directory with voltage clearances defined by your requirements (e.g. standards).
-Use this template as a guide: `clearance.ods <https://github.com/upb-lea/kiclearance/blob/main/examples/clearance.ods>`__.
+Use this template as a guide: `clearance.ods <https://github.com/upb-lea/KiClearance/blob/main/examples/clearance.ods>`__.
 
 Add the net classes to each connection in the circuit diagram.
 
@@ -37,4 +37,4 @@ Add the same net classes in the net classes of the PCB editor:
 Documentation
 ---------------------------------------
 
-Find the documentation `here <https://upb-lea.github.io/kiclearance/intro.html>`__.
+Find the documentation `here <https://upb-lea.github.io/KiClearance/intro.html>`__.
