@@ -1,5 +1,5 @@
 """Example to generate kicad clearance rules from a human-readable table."""
-import kiclearance as pkc
+import kiclearance as kc
 import os
 
 if __name__ == '__main__':
@@ -9,7 +9,7 @@ if __name__ == '__main__':
     project_name = None
 
     # Run script
-    table_file = pkc.look_for_clearance_table_file(project_folder, table_name)
-    project_name = pkc.look_for_kicad_project(project_folder, project_name)
-    table_data = pkc.parse_excel_table(table_file)
-    pkc.write_design_rule_file(table_data, project_folder, project_name)
+    table_file = kc.look_for_clearance_table_file(project_folder, table_name)
+    project_name = kc.look_for_kicad_project(project_folder, project_name)
+    table_data = kc.parse_excel_table(table_file)
+    kc.write_design_rule_file(table_data, project_folder, project_name)
