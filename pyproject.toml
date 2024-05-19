@@ -1,5 +1,5 @@
 [project]
-name = "pykicadclearance"
+name = "kiclearance"
 version = "0.0.1"
 authors = [
     { name = "UPB-LEA" },
@@ -19,8 +19,8 @@ dependencies = { file = ["requirements.txt"] }
 optional-dependencies = { dev = { file = ["requirements-dev.txt"] } }
 
 [project.urls]
-Homepage = "https://github.com/upb-lea/pyKicadClearance"
-Issues = "https://github.com/upb-lea/pyKicadClearance/issues"
+Homepage = "https://github.com/upb-lea/kiclearance"
+Issues = "https://github.com/upb-lea/kiclearance/issues"
 
 [build-system]
 requires = ["hatchling", "hatch-requirements-txt"]
@@ -30,11 +30,11 @@ build-backend = "hatchling.build"
 files = ["requirements.txt"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["pykicadclearance/"]
+packages = ["kiclearance/"]
 
 [tool.hatch.build.targets.sdist]
 include = [
-    "pykicadclearance/*.py",
+    "kiclearance/*.py",
     "tests",
     "requirements.txt"
 ]

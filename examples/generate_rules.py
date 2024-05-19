@@ -1,5 +1,5 @@
 """Example to generate kicad clearance rules from a human-readable table."""
-import pykicadclearance as pkc
+import kiclearance as pkc
 import os
 
 if __name__ == '__main__':
