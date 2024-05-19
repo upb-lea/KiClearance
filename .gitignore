@@ -3,3 +3,5 @@ kiclearance/__pycache__/
 examples/clearance_example-backups/
 docs/build
 *.pdf
+dist/
+gpgit/
