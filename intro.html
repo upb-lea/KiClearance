@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1 Welcome to PyKicadClearance &mdash; kiclearance 0.0.1 documentation</title>
+  <title>1 KiClearance function documentation &mdash; kiclearance 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to PyKicadClearance’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Welcome to KiClearance’s documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,14 +45,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><span class="sectnum">1 </span>Welcome to PyKicadClearance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation"><span class="sectnum">1.1 </span>Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#usage"><span class="sectnum">1.2 </span>Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#documentation"><span class="sectnum">1.3 </span>Documentation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#pykicadclearance-function-documentation"><span class="sectnum">2 </span>PyKicadClearance function documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-functions-of-pykicadclearance"><span class="sectnum">2.1 </span>The <code class="docutils literal notranslate"><span class="pre">functions</span></code> of PyKicadClearance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><span class="sectnum">1 </span>KiClearance function documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.look_for_clearance_table_file"><code class="docutils literal notranslate"><span class="pre">look_for_clearance_table_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.look_for_kicad_project"><code class="docutils literal notranslate"><span class="pre">look_for_kicad_project()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.parse_excel_table"><code class="docutils literal notranslate"><span class="pre">parse_excel_table()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.usage"><code class="docutils literal notranslate"><span class="pre">usage()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.write_design_rule_file"><code class="docutils literal notranslate"><span class="pre">write_design_rule_file()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -71,7 +69,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="sectnum">1 </span>Welcome to PyKicadClearance</li>
+      <li class="breadcrumb-item active"><span class="sectnum">1 </span>KiClearance function documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,36 +79,80 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-pykicadclearance">
-<h1><span class="sectnum">1 </span>Welcome to PyKicadClearance<a class="headerlink" href="#welcome-to-pykicadclearance" title="Link to this heading"></a></h1>
-<img alt="_images/overview.png" src="_images/overview.png" />
-<section id="installation">
-<h2><span class="sectnum">1.1 </span>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>Install PyKicadClearance directly from pyPI:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pykicadclearance</span>
-</pre></div>
-</div>
-</section>
-<section id="usage">
-<h2><span class="sectnum">1.2 </span>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-</section>
-<section id="documentation">
-<h2><span class="sectnum">1.3 </span>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
-<p>Find the documentation <a class="reference external" href="https://upb-lea.github.io/pykicadclearance/intro.html">here</a>.</p>
-</section>
-</section>
-<section id="pykicadclearance-function-documentation">
-<h1><span class="sectnum">2 </span>PyKicadClearance function documentation<a class="headerlink" href="#pykicadclearance-function-documentation" title="Link to this heading"></a></h1>
-<section id="the-functions-of-pykicadclearance">
-<h2><span class="sectnum">2.1 </span>The <code class="docutils literal notranslate"><span class="pre">functions</span></code> of PyKicadClearance<a class="headerlink" href="#the-functions-of-pykicadclearance" title="Link to this heading"></a></h2>
-</section>
+  <section id="module-kiclearance.kiclearance">
+<span id="kiclearance-function-documentation"></span><h1><span class="sectnum">1 </span>KiClearance function documentation<a class="headerlink" href="#module-kiclearance.kiclearance" title="Link to this heading"></a></h1>
+<p>Generate clearance rules for kicad from a human-readable table.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="kiclearance.kiclearance.look_for_clearance_table_file">
+<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">look_for_clearance_table_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance_table_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kiclearance.kiclearance.look_for_clearance_table_file" title="Link to this definition"></a></dt>
+<dd><p>Try to find the clearance table file in the given folder.</p>
+<p>This file has either the default name ‘clearance’ or a name given
+by the user. The file has to be: .ods, .xls or .xlsx.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>folder</strong> (<em>str</em>) – folder name to look for the clearance table file</p></li>
+<li><p><strong>clearance_table_file_name</strong> (<em>str</em>) – clearance table file name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kiclearance.kiclearance.look_for_kicad_project">
+<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">look_for_kicad_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kicad_project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kiclearance.kiclearance.look_for_kicad_project" title="Link to this definition"></a></dt>
+<dd><p>Try to find the kicad project automatically if no project_name is given.</p>
+<p>This is done by searching for kicad_pro files.
+:param folder: folder of the kicad project
+:type folder: str
+:param kicad_project_name: Kicad project name, optional
+:type kicad_project_name: str</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kiclearance.kiclearance.parse_excel_table">
+<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">parse_excel_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clearance_table_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kiclearance.kiclearance.parse_excel_table" title="Link to this definition"></a></dt>
+<dd><p>Parse clearance data from the given clearance table file.</p>
+<p>Data will be stored in the following format:
+List of lists: [[Net_1, Net_2, distance], [Net_1, Net_3, distance], …]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>clearance_table_file</strong> (<em>str</em>) – clearance table file (.xls, .ods, .csv)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kiclearance.kiclearance.usage">
+<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kiclearance.kiclearance.usage" title="Link to this definition"></a></dt>
+<dd><p>For terminal usage.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kiclearance.kiclearance.write_design_rule_file">
+<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">write_design_rule_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clearance_table_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kicad_project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor_inner_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_track_distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kiclearance.kiclearance.write_design_rule_file" title="Link to this definition"></a></dt>
+<dd><p>Write the rules to the design rule file (your_project.kicad_dru).</p>
+<p>A reduction factor for the inner layers can be applied, as there is less pollution, typically inner clearance can be reduced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>clearance_table_data</strong> (<em>str</em>) – clearance table data</p></li>
+<li><p><strong>kicad_project_name</strong> (<em>str</em>) – kicad project name</p></li>
+<li><p><strong>factor_inner_layers</strong> (<em>float</em>) – distance factor for inner layers distance. Default is 0.5</p></li>
+<li><p><strong>min_track_distance</strong> (<em>float</em>) – minimum track distance in mm</p></li>
+<li><p><strong>folder</strong> (<em>str</em>) – directory</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to PyKicadClearance’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to KiClearance’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
