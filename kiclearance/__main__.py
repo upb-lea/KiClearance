@@ -1,3 +1,4 @@
+"""Make KiClearance executable by the terminal."""
 import os
 import getopt
 import sys
