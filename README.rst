@@ -32,9 +32,26 @@ Add the same net classes in the net classes of the PCB editor:
 
 .. image:: docs/source/figures/board_setup.png
 
+Navigate to the project folder with the KiCad project and the clearance.ods/.xls/.csv file. Open a terminal and execute :
 
+::
+
+    python -m kiclearance
+
+Now a file yourprojectname.kicad_dru is generated, which contains the rule sets.
+
+Open your Kicad project, the rule sets are now stored and you can start the routing.
+
+Example
+---------------------------------------
+A complete example can be found `here <https://github.com/upb-lea/KiClearance/tree/main/examples>`__.
 
 Documentation
 ---------------------------------------
 
 Find the documentation `here <https://upb-lea.github.io/KiClearance/intro.html>`__.
+
+
+Troubleshooting
+---------------------------------------
+This program has so far been tested only on linux.
