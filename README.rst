@@ -49,7 +49,7 @@ A complete example can be found `here <https://github.com/upb-lea/KiClearance/tr
 Documentation
 ---------------------------------------
 
-Find the documentation `here <https://upb-lea.github.io/KiClearance/intro.html>`__.
+Find the documentation `here <https://upb-lea.github.io/KiClearance/index.html>`__.
 
 
 Troubleshooting
