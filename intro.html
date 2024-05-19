@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1 KiClearance function documentation &mdash; kiclearance 0.0.1 documentation</title>
+  <title>1 Welcome to KiClearance &mdash; kiclearance 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -45,7 +45,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><span class="sectnum">1 </span>KiClearance function documentation</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><span class="sectnum">1 </span>Welcome to KiClearance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation"><span class="sectnum">1.1 </span>Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage"><span class="sectnum">1.2 </span>Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example"><span class="sectnum">1.3 </span>Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting"><span class="sectnum">1.4 </span>Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#module-kiclearance.kiclearance"><span class="sectnum">2 </span>KiClearance function documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.look_for_clearance_table_file"><code class="docutils literal notranslate"><span class="pre">look_for_clearance_table_file()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.look_for_kicad_project"><code class="docutils literal notranslate"><span class="pre">look_for_kicad_project()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.parse_excel_table"><code class="docutils literal notranslate"><span class="pre">parse_excel_table()</span></code></a></li>
@@ -69,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="sectnum">1 </span>KiClearance function documentation</li>
+      <li class="breadcrumb-item active"><span class="sectnum">1 </span>Welcome to KiClearance</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -79,8 +86,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-kiclearance.kiclearance">
-<span id="kiclearance-function-documentation"></span><h1><span class="sectnum">1 </span>KiClearance function documentation<a class="headerlink" href="#module-kiclearance.kiclearance" title="Link to this heading"></a></h1>
+  <section id="welcome-to-kiclearance">
+<h1><span class="sectnum">1 </span>Welcome to KiClearance<a class="headerlink" href="#welcome-to-kiclearance" title="Link to this heading"></a></h1>
+<p>This Python program converts a given table of voltage distances into KiCad design rules.</p>
+<img alt="_images/overview.png" src="_images/overview.png" />
+<section id="installation">
+<h2><span class="sectnum">1.1 </span>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>Install KiClearance directly from pyPI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">kiclearance</span>
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2><span class="sectnum">1.2 </span>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>Create a table (clearance.ods/xls/csv) in your KiCad project directory with voltage clearances defined by your requirements (e.g. standards).
+Use this template as a guide: <a class="reference external" href="https://github.com/upb-lea/KiClearance/blob/main/examples/clearance.ods">clearance.ods</a>.</p>
+<p>Add the net classes to each connection in the circuit diagram.</p>
+<img alt="_images/net_class_directive_labels.png" src="_images/net_class_directive_labels.png" />
+<p>Add the same net classes in the net classes of the PCB editor:
+<cite>KiCad PCB Editor</cite>: <cite>File</cite> -&gt; <cite>Board Setup</cite> -&gt; <cite>Design Rules</cite> -&gt; <cite>Net classes</cite></p>
+<img alt="_images/board_setup.png" src="_images/board_setup.png" />
+<p>Navigate to the project folder with the KiCad project and the clearance.ods/.xls/.csv file. Open a terminal and execute :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">kiclearance</span>
+</pre></div>
+</div>
+<p>Now a file yourprojectname.kicad_dru is generated, which contains the rule sets.</p>
+<p>Open your Kicad project, the rule sets are now stored and you can start the routing.</p>
+</section>
+<section id="example">
+<h2><span class="sectnum">1.3 </span>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>A complete example can be found <a class="reference external" href="https://github.com/upb-lea/KiClearance/tree/main/examples">here</a>.</p>
+</section>
+<section id="troubleshooting">
+<h2><span class="sectnum">1.4 </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p>This program has so far been tested only on linux.</p>
+</section>
+</section>
+<section id="module-kiclearance.kiclearance">
+<span id="kiclearance-function-documentation"></span><h1><span class="sectnum">2 </span>KiClearance function documentation<a class="headerlink" href="#module-kiclearance.kiclearance" title="Link to this heading"></a></h1>
 <p>Generate clearance rules for kicad from a human-readable table.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="kiclearance.kiclearance.look_for_clearance_table_file">
