@@ -46,6 +46,8 @@ Tips and tricks
 ---------------------------------------
 If two network classes are assigned to a connection by mistake, this is displayed as an error in the Electrical Rules Checker (``Inspect`` -> ``Electrical Rules Checker``).
 
+KiCad works through the rules from bottom to top:  Once an applicable rule has been found, kiCad will not search for further rules. Keep this in mind when adding your own rules. 
+
 Example
 ---------------------------------------
 A complete example can be found `here <https://github.com/upb-lea/KiClearance/tree/main/examples>`__.
