@@ -10,7 +10,8 @@ project_name = None
 
 # Parse command line arguments
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "hf:n:t:i:d:", ["help", "project_folder=", "project_name=", "table_file=, 'factor_inner_layers=", "min_track_distance="])
+    opts, args = getopt.getopt(sys.argv[1:], "hf:n:t:i:d:",
+                               ["help", "project_folder=", "project_name=", "table_file=, 'factor_inner_layers=", "min_track_distance="])
 except getopt.GetoptError as err:
     print(err)
     usage()

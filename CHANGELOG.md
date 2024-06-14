@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2024-06-14
+### Fixed
+ - command line help output 
+
 ## [0.1.0] - 2024-06-14
 ### Added
  - new dependency for openpyxl to read xlsx-files out of the box
@@ -22,7 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
  - Initial release 
 
-[unreleased]: https://github.com/upb-lea/KiClearance/compare/0.1.0...HEAD
+[unreleased]: https://github.com/upb-lea/KiClearance/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/upb-lea/KiClearance/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/upb-lea/KiClearance/compare/0.0.2...0.1.0
 [0.0.2]: https://github.com/upb-lea/KiClearance/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/upb-lea/KiClearance/releases/tag/0.0.1

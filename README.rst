@@ -55,11 +55,29 @@ Now a file ``yourprojectname.kicad_dru`` is generated, which contains the rule s
 
 Open your KiCad project, the rule sets are now stored and you can start the routing.
 
+As the inner layers are exposed to less dirt and no air, the distance in the inner layers is halved by default.
+If this factor is to be set differently, this can be set with the following command (in the example: distance to 75%):
+
+::
+
+    python -m kiclearance -i 0.75
+
 To see help and options, run
 
 ::
 
     python -m kiclearance --help
+
+::
+
+    The following arguments are possible:
+    -h, --help: Prints this information,
+    -f, --project_folder (Optional): Path to the folder in which the project is located. Default: Folder in which this python script is located.
+    -n, --project_name (Optional): Name of the kicad project (file prefix). Default: Script will look for a file with .kicad_pro in the set folder.
+    -t, --table_file (Optional): Name (and ending) of the file containing the distance values. Default name: 'clearance'.
+    -i, --factor_inner_layers (Optional): Reduced factor for the inner layers. Default: 0.5
+    -d, --min_track_distance (Optional): minimum track distance between two tracks on the same potential. Default: 0.15 mm.
+
 
 Tips and tricks
 ---------------------------------------

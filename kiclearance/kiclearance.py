@@ -2,8 +2,6 @@
 import pandas as pd
 import os
 import importlib.util
-import getopt
-import sys
 import numpy as np
 
 
@@ -207,8 +205,8 @@ def usage():
             -f, --project_folder (Optional): Path to the folder in which the project is located. Default: Folder in which this python script is located.\n\
             -n, --project_name (Optional): Name of the kicad project (file prefix). Default: Script will look for a file with .kicad_pro in the set folder.\n\
             -t, --table_file (Optional): Name (and ending) of the file containing the distance values. Default name: 'clearance'.\n\
-            -fi, --factor_inner_layers (Optional): Reduced factor for the inner layers. Default: 0.5\n\
-            -td, --min_track_distance (Optional): minimum track distance between two tracks on the same potential. Default: 0.15 mm."
+            -i, --factor_inner_layers (Optional): Reduced factor for the inner layers. Default: 0.5\n\
+            -d, --min_track_distance (Optional): minimum track distance between two tracks on the same potential. Default: 0.15 mm."
 
     print(text)
 
