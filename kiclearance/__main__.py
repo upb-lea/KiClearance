@@ -7,6 +7,8 @@ from kiclearance.kiclearance import *
 project_folder = os.path.curdir
 table_name = None
 project_name = None
+factor_inner_layers = None
+min_track_distance = None
 
 # Parse command line arguments
 try:

@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.1] - 2024-06-14
 ### Fixed
- - command line help output 
+ - command line help output
+ - issue when no factor for inner layers and minimum track distance is given 
 
 ## [0.1.0] - 2024-06-14
 ### Added
