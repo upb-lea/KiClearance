@@ -10,7 +10,7 @@ project_name = None
 
 # Parse command line arguments
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "hf:n:t:", ["help", "project_folder=", "project_name=", "table_file="])
+    opts, args = getopt.getopt(sys.argv[1:], "hf:n:t:i:d:", ["help", "project_folder=", "project_name=", "table_file=, 'factor_inner_layers=", "min_track_distance="])
 except getopt.GetoptError as err:
     print(err)
     usage()
@@ -26,9 +26,13 @@ for o, a in opts:
         project_name = a
     elif o in ("-t", "--table_file_name"):
         table_name = a
+    elif o in ("-i", "factor_inner_layers"):
+        factor_inner_layers = float(a)
+    elif o in ("-d", "min_track_distance"):
+        min_track_distance = float(a)
 
 # Run script
 table_file = look_for_clearance_table_file(project_folder, table_name)
 project_name = look_for_kicad_project(project_folder, project_name)
 table_data = parse_excel_table(table_file)
-write_design_rule_file(table_data, project_folder, project_name)
+write_design_rule_file(table_data, project_folder, project_name, factor_inner_layers=factor_inner_layers, min_track_distance=min_track_distance)

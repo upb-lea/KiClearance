@@ -7,8 +7,7 @@ import sys
 import numpy as np
 
 
-def write_design_rule_file(clearance_table_data, folder, kicad_project_name: str, factor_inner_layers: float = 0.5,
-                           min_track_distance: float = 0.15):
+def write_design_rule_file(clearance_table_data, folder, kicad_project_name: str, factor_inner_layers: float, min_track_distance: float):
     """
     Write the rules to the design rule file (your_project.kicad_dru).
 
@@ -26,6 +25,11 @@ def write_design_rule_file(clearance_table_data, folder, kicad_project_name: str
     :type folder: str
 
     """
+    if factor_inner_layers is None:
+        factor_inner_layers = 0.5
+    if min_track_distance is None:
+        min_track_distance = 0.15
+
     start_comment = "# Auto-Generated for voltage distances - start"
     end_comment = "# Auto-Generated - end"
 
@@ -202,36 +206,12 @@ def usage():
             -h, --help: Prints this information,\n\
             -f, --project_folder (Optional): Path to the folder in which the project is located. Default: Folder in which this python script is located.\n\
             -n, --project_name (Optional): Name of the kicad project (file prefix). Default: Script will look for a file with .kicad_pro in the set folder.\n\
-            -t, --table_file (Optional): Name (and ending) of the file containing the distance values. Default name: 'clearance'."
+            -t, --table_file (Optional): Name (and ending) of the file containing the distance values. Default name: 'clearance'.\n\
+            -fi, --factor_inner_layers (Optional): Reduced factor for the inner layers. Default: 0.5\n\
+            -td, --min_track_distance (Optional): minimum track distance between two tracks on the same potential. Default: 0.15 mm."
+
     print(text)
 
 
 if __name__ == "__main__":
-    project_folder = os.path.dirname(os.path.realpath(__file__))
-    table_name = None
-    project_name = None
-
-    # Parse command line arguments
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "hf:n:t:", ["help", "project_folder=", "project_name=", "table_file="])
-    except getopt.GetoptError as err:
-        print(err)
-        usage()
-        sys.exit(2)
-
-    for o, a in opts:
-        if o in ("-h", "--help"):
-            usage()
-            sys.exit()
-        elif o in ("-f", "--project_folder"):
-            project_folder = a
-        elif o in ("-n", "--project_name"):
-            project_name = a
-        elif o in ("-t", "--table_file_name"):
-            table_name = a
-
-    # Run script
-    table_file = look_for_clearance_table_file(project_folder, table_name)
-    project_name = look_for_kicad_project(project_folder, project_name)
-    table_data = parse_excel_table(table_file)
-    write_design_rule_file(table_data, project_folder, project_name)
+    pass

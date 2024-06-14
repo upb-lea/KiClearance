@@ -994,6 +994,17 @@
 		)
 		(uuid "c30432b7-0855-4ee4-979d-3a35bde87e77")
 	)
+	(label "trial#"
+		(at 132.08 86.36 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f83a7cf7-a3a4-4848-b348-545a8def3b7f")
+	)
 	(netclass_flag ""
 		(length 2.54)
 		(shape round)
