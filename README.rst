@@ -85,6 +85,10 @@ If two network classes are assigned to a connection by mistake, this is displaye
 
 KiCad works through the rules from bottom to top:  Once an applicable rule has been found, KiCad will not search for further rules. Keep this in mind when adding more own rules except from this script here.
 
+Connections in the circuit diagram without a NetClass are automatically assigned to the ``default`` NetClass. 
+To avoid careless errors due to missing NetClasses, the ``default`` NetClass should not be used and the distance from ``default`` to other NetClasses should also be set to an unrealistically high value (e.g. 100mm). 
+This means that missing NetClasses are immediately noticeable in the layout and can then be assigned.
+
 Example
 ---------------------------------------
 A complete example can be found `here <https://github.com/upb-lea/KiClearance/tree/main/examples>`__.
