@@ -2,7 +2,7 @@
 import os
 import kiclearance as kc
 
-def compare_files(file_path_1: str, file_path_2: str):
+def compare_files(file_path_1: str, file_path_2: str) -> bool:
     """
     Compare two files.
 
@@ -33,4 +33,4 @@ def test_rules():
     table_data = kc.parse_excel_table(table_file)
     kc.write_design_rule_file(table_data, project_folder, project_name)
 
-    assert compare_files("clearance_example.kicad_dru", "results/clearance_example.kicad_dru")
+    assert compare_files("tests/clearance_example.kicad_dru", "tests/results/clearance_example.kicad_dru")
