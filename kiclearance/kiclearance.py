@@ -129,7 +129,7 @@ def parse_excel_table(clearance_table_file: str) -> list:
         column = df[column_name]
         for k in range(index + 1):
             row_name = headers[k]
-            value = column[k]
+            value = column.iloc[k]
             if np.isnan(value):
                 raise Exception("A nan value is found. Is the given table a upper triangular matrix or a symmetrical matrix?")
             data.append([column_name, row_name, value])
