@@ -1,9 +1,18 @@
+"""Unit and integration tests."""
 import os
 import kiclearance as kc
 
 def compare_files(file_path_1: str, file_path_2: str):
+    """
+    Compare two files.
+
+    :param file_path_1: file path for file 1
+    :type file_path_1: str
+    :param file_path_2: file path for file 2
+    :type file_path_2: str
+    """
     with open(file_path_1, 'r') as file1, open(file_path_2, 'r') as file2:
-        for line1, line2 in zip(file1, file2):
+        for line1, line2 in zip(file1, file2, strict=False):
             if line1.strip() != line2.strip():
                 return False
         # Check if one file has more lines than the other
@@ -12,6 +21,7 @@ def compare_files(file_path_1: str, file_path_2: str):
         return True
 
 def test_rules():
+    """Generate and test rule generation."""
     project_folder = os.path.dirname(os.path.realpath(__file__))
 
     table_name = None
@@ -24,6 +34,3 @@ def test_rules():
     kc.write_design_rule_file(table_data, project_folder, project_name)
 
     assert compare_files("clearance_example.kicad_dru", "results/clearance_example.kicad_dru")
-
-
-
