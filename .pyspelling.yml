@@ -11,7 +11,7 @@ matrix:
   pipeline:
   - pyspelling.filters.python:
       strings: true
-      comments: false
+      comments: true
   ignore_regexp:
         - '.*\b(TODO|FIXME|NOTE)\b.*'
 - name: markdown
