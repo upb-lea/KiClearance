@@ -71,3 +71,16 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
+
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_incomplete_defs = true
+exclude = [
+    'examples/pareto_summary.py',  # TOML literal string (single-quotes, no escaping necessary)
+    "examples/pareto_summary_wo_hs.py",  # TOML basic string (double-quotes, backslash and other characters need escaping)
+]
+
+ignore_missing_imports = true

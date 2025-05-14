@@ -5,14 +5,14 @@ import importlib.util
 import numpy as np
 
 
-def write_design_rule_file(clearance_table_data, folder, kicad_project_name: str, factor_inner_layers: float, min_track_distance: float):
+def write_design_rule_file(clearance_table_data: list, folder: str, kicad_project_name: str, factor_inner_layers: float | None = None, min_track_distance: float | None = None) -> None:
     """
     Write the rules to the design rule file (your_project.kicad_dru).
 
     A reduction factor for the inner layers can be applied, as there is less pollution, typically inner clearance can be reduced.
 
     :param clearance_table_data: clearance table data
-    :type clearance_table_data: str
+    :type clearance_table_data: list
     :param kicad_project_name: kicad project name
     :type kicad_project_name: str
     :param factor_inner_layers: distance factor for inner layers distance. Default is 0.5
@@ -98,7 +98,7 @@ def write_design_rule_file(clearance_table_data, folder, kicad_project_name: str
         fd.write(text)
 
 
-def parse_excel_table(clearance_table_file: str):
+def parse_excel_table(clearance_table_file: str) -> list:
     """
     Parse clearance data from the given clearance table file.
 
@@ -136,7 +136,7 @@ def parse_excel_table(clearance_table_file: str):
     return data
 
 
-def look_for_clearance_table_file(folder: str, clearance_table_file_name: str = None):
+def look_for_clearance_table_file(folder: str, clearance_table_file_name: str | None = None) -> str:
     """
     Try to find the clearance table file in the given folder.
 
@@ -166,7 +166,7 @@ def look_for_clearance_table_file(folder: str, clearance_table_file_name: str = 
     raise Exception(f"Clearance table file was not found in folder {folder}.")
 
 
-def look_for_kicad_project(folder: str, kicad_project_name: str = None):
+def look_for_kicad_project(folder: str, kicad_project_name: str | None = None) -> str:
     """
     Try to find the kicad project automatically if no project_name is given.
 

@@ -36,6 +36,9 @@ jobs:
           
             pip install pylint
             pylint $(git ls-files '*.py') 
+          
+            pip install mypy
+            mypy $(git ls-files '*.py') 
 
       - name: install kiclearance package
         run: |
