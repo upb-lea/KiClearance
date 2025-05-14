@@ -1,0 +1,36 @@
+(version 1)
+# Auto-Generated for voltage distances - start
+(rule Default_Default_inner_outer
+	(constraint clearance (min "0.15mm"))
+	(condition "A.NetClass == 'Default' && B.NetClass == 'Default'"))
+(rule LV_Default_outer
+	(layer outer)
+	(constraint clearance (min "8.1mm"))
+	(condition "A.NetClass == 'LV' && B.NetClass == 'Default'"))
+(rule LV_Default_inner
+	(layer inner)
+	(constraint clearance (min "4.05mm"))
+	(condition "A.NetClass == 'LV' && B.NetClass == 'Default'"))
+(rule LV_LV_inner_outer
+	(constraint clearance (min "0.15mm"))
+	(condition "A.NetClass == 'LV' && B.NetClass == 'LV'"))
+(rule HV_Default_outer
+	(layer outer)
+	(constraint clearance (min "8.1mm"))
+	(condition "A.NetClass == 'HV' && B.NetClass == 'Default'"))
+(rule HV_Default_inner
+	(layer inner)
+	(constraint clearance (min "4.05mm"))
+	(condition "A.NetClass == 'HV' && B.NetClass == 'Default'"))
+(rule HV_LV_outer
+	(layer outer)
+	(constraint clearance (min "3.3mm"))
+	(condition "A.NetClass == 'HV' && B.NetClass == 'LV'"))
+(rule HV_LV_inner
+	(layer inner)
+	(constraint clearance (min "1.65mm"))
+	(condition "A.NetClass == 'HV' && B.NetClass == 'LV'"))
+(rule HV_HV_inner_outer
+	(constraint clearance (min "0.15mm"))
+	(condition "A.NetClass == 'HV' && B.NetClass == 'HV'"))
+# Auto-Generated - end

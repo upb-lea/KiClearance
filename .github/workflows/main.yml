@@ -28,7 +28,6 @@ jobs:
       - name: check linting and types using ruff, pycodestyle, pylint, mypy
         run: |
             pip install pycodestyle
-            pip install pytest
             pycodestyle $(git ls-files '*.py') 
           
             pip install ruff
@@ -49,5 +48,11 @@ jobs:
       - name: install kiclearance package
         run: |
             pip install -e .
-
+      # Runs a set of commands using the runners shell
+      - name: Run pytests
+        run: |
+          pip install pytest
+          echo Start testing...
+          pytest tests
+          echo tests finished.
 

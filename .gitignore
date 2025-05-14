@@ -6,3 +6,5 @@ docs/build
 dist/
 gpgit/
 dictionary.dic
+tests/__pycache__/
+tests/clearance_example.kicad_dru
