@@ -100,6 +100,6 @@ Find the documentation `here <https://upb-lea.github.io/KiClearance/index.html>`
 
 Troubleshooting
 ---------------------------------------
-This program has so far been tested only on Linux and Windows.
-
+* This program has so far been tested only on Linux and Windows.
+* For performance reasons when routing, the number of NetClasses should be less than 10(or not exceed this to any significant degree)
 

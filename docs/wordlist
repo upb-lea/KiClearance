@@ -6,9 +6,16 @@ odf
 kicad
 dru
 NetClass
+NetClasses
+sectnum
 str
 param
 csv
 KiClearance
 conda
 odfpy
+png
+KiCad
+pyPI
+openpyxl
+Changelog
