@@ -1,2 +1,2 @@
-"""Init the package."""
+"""Initialize the package."""
 from kiclearance.kiclearance import *

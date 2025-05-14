@@ -5,7 +5,8 @@ import importlib.util
 import numpy as np
 
 
-def write_design_rule_file(clearance_table_data: list, folder: str, kicad_project_name: str, factor_inner_layers: float | None = None, min_track_distance: float | None = None) -> None:
+def write_design_rule_file(clearance_table_data: list, folder: str, kicad_project_name: str,
+                           factor_inner_layers: float | None = None, min_track_distance: float | None = None) -> None:
     """
     Write the rules to the design rule file (your_project.kicad_dru).
 

@@ -1,0 +1,16 @@
+matrix:
+- name: Python Source
+  aspell:
+    lang: en
+    d: en_US
+  sources:
+  - kiclearance/*.py
+  dictionary:
+    wordlists:
+      - docs/wordlist
+  pipeline:
+  - pyspelling.filters.python:
+      strings: true
+      comments: false
+  ignore_regexp:
+        - '.*\b(TODO|FIXME|NOTE)\b.*'

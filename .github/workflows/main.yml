@@ -25,7 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: check linting using pycodestyle
+      - name: check linting and types using ruff, pycodestyle, pylint, mypy
         run: |
             pip install pycodestyle
             pip install pytest
@@ -38,7 +38,13 @@ jobs:
             pylint $(git ls-files '*.py') 
           
             pip install mypy
-            mypy $(git ls-files '*.py') 
+            mypy $(git ls-files '*.py')
+      - name: Install packages for spell check and perform spell check
+        run: |
+          sudo apt install aspell-en
+          pip install pyspelling
+          pyspelling
+          echo finished spell checking
 
       - name: install kiclearance package
         run: |
