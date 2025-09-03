@@ -16,7 +16,7 @@ def write_design_rule_file(clearance_table_data: list, folder: str, kicad_projec
     :type clearance_table_data: list
     :param kicad_project_name: kicad project name
     :type kicad_project_name: str
-    :param factor_inner_layers: distance factor for inner layers distance. Default is 0.5
+    :param factor_inner_layers: distance factor for inner layers distance. Default is 1.0
     :type factor_inner_layers: float
     :param min_track_distance: minimum track distance in mm
     :type min_track_distance: float
@@ -25,7 +25,7 @@ def write_design_rule_file(clearance_table_data: list, folder: str, kicad_projec
 
     """
     if factor_inner_layers is None:
-        factor_inner_layers = 0.5
+        factor_inner_layers = 1.0
     if min_track_distance is None:
         min_track_distance = 0.15
 
@@ -40,28 +40,45 @@ def write_design_rule_file(clearance_table_data: list, folder: str, kicad_projec
         distance = data[2]
         if distance <= min_track_distance:
             # This is the minimum distance between two tracks for both, inner and outer layers.
-            new_lines.append(f"(rule {first_net_name}_{second_net_name}_inner_outer")
+            new_lines.append(f"(rule {first_net_name}_{second_net_name}_min_self_distance")
             new_lines.append(f"\t(constraint clearance (min \"{min_track_distance}mm\"))")
             new_lines.append(
                 f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
         elif distance < 2 * min_track_distance:
-            new_lines.append(f"(rule {first_net_name}_{second_net_name}_outer")
-            new_lines.append("\t(layer outer)")
-            new_lines.append(f"\t(constraint clearance (min \"{distance}mm\"))")
-            new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
-            new_lines.append(f"(rule {first_net_name}_{second_net_name}_inner")
-            new_lines.append("\t(layer inner)")
-            new_lines.append(f"\t(constraint clearance (min \"{min_track_distance}mm\"))")
-            new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
+            # simplify ruleset in case of factor for inner layers is 1
+            if factor_inner_layers == 1:
+                # no distinction between inner and outer layers
+                new_lines.append(f"(rule {first_net_name}_{second_net_name}")
+                new_lines.append(f"\t(constraint clearance (min \"{distance}mm\"))")
+                new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
+            else:
+                # distinguish between inner and outer layers
+                new_lines.append(f"(rule {first_net_name}_{second_net_name}_outer")
+                new_lines.append("\t(layer outer)")
+                new_lines.append(f"\t(constraint clearance (min \"{distance}mm\"))")
+                new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
+                new_lines.append(f"(rule {first_net_name}_{second_net_name}_inner")
+                new_lines.append("\t(layer inner)")
+                new_lines.append(f"\t(constraint clearance (min \"{min_track_distance}mm\"))")
+                new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
+
         elif distance >= 2 * min_track_distance:
-            new_lines.append(f"(rule {first_net_name}_{second_net_name}_outer")
-            new_lines.append("\t(layer outer)")
-            new_lines.append(f"\t(constraint clearance (min \"{distance}mm\"))")
-            new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
-            new_lines.append(f"(rule {first_net_name}_{second_net_name}_inner")
-            new_lines.append("\t(layer inner)")
-            new_lines.append(f"\t(constraint clearance (min \"{distance * factor_inner_layers}mm\"))")
-            new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
+            # simplify ruleset in case of factor for inner layers is 1
+            if factor_inner_layers == 1:
+                # no distinction between inner and outer layers
+                new_lines.append(f"(rule {first_net_name}_{second_net_name}")
+                new_lines.append(f"\t(constraint clearance (min \"{distance}mm\"))")
+                new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
+            else:
+                # distinguish between inner and outer layers
+                new_lines.append(f"(rule {first_net_name}_{second_net_name}_outer")
+                new_lines.append("\t(layer outer)")
+                new_lines.append(f"\t(constraint clearance (min \"{distance}mm\"))")
+                new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
+                new_lines.append(f"(rule {first_net_name}_{second_net_name}_inner")
+                new_lines.append("\t(layer inner)")
+                new_lines.append(f"\t(constraint clearance (min \"{distance * factor_inner_layers}mm\"))")
+                new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
 
     new_lines.append(end_comment)
 
@@ -206,7 +223,7 @@ def usage():
             -f, --project_folder (Optional): Path to the folder in which the project is located. Default: Folder in which this python script is located.\n\
             -n, --project_name (Optional): Name of the kicad project (file prefix). Default: Script will look for a file with .kicad_pro in the set folder.\n\
             -t, --table_file (Optional): Name (and ending) of the file containing the distance values. Default name: 'clearance'.\n\
-            -i, --factor_inner_layers (Optional): Reduced factor for the inner layers. Default: 0.5\n\
+            -i, --factor_inner_layers (Optional): Reduced factor for the inner layers. Default: 1.0\n\
             -d, --min_track_distance (Optional): minimum track distance between two tracks on the same potential. Default: 0.15 mm."
 
     print(text)
