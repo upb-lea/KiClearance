@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed
- - reduce ruleset in case of factor_inner_layers is 1.0
+ - reduce rules in case of factor_inner_layers is 1.0
 
 ## [0.1.2] - 2024-06-14
 ### Fixed

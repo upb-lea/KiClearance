@@ -45,7 +45,7 @@ def write_design_rule_file(clearance_table_data: list, folder: str, kicad_projec
             new_lines.append(
                 f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
         elif distance < 2 * min_track_distance:
-            # simplify ruleset in case of factor for inner layers is 1
+            # simplify rules in case of factor for inner layers is 1
             if factor_inner_layers == 1:
                 # no distinction between inner and outer layers
                 new_lines.append(f"(rule {first_net_name}_{second_net_name}")
@@ -63,7 +63,7 @@ def write_design_rule_file(clearance_table_data: list, folder: str, kicad_projec
                 new_lines.append(f"\t(condition \"A.NetClass == '{first_net_name}' && B.NetClass == '{second_net_name}'\"))")
 
         elif distance >= 2 * min_track_distance:
-            # simplify ruleset in case of factor for inner layers is 1
+            # simplify rules in case of factor for inner layers is 1
             if factor_inner_layers == 1:
                 # no distinction between inner and outer layers
                 new_lines.append(f"(rule {first_net_name}_{second_net_name}")
