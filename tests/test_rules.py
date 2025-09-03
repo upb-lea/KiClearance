@@ -20,7 +20,7 @@ def compare_files(file_path_1: str, file_path_2: str) -> bool:
             return False
         return True
 
-def test_rules():
+def test_rules_factor_inner_layers_05():
     """Generate and test rule generation."""
     project_folder = os.path.dirname(os.path.realpath(__file__))
 
@@ -31,6 +31,21 @@ def test_rules():
     table_file = kc.look_for_clearance_table_file(project_folder, table_name)
     project_name = kc.look_for_kicad_project(project_folder, project_name)
     table_data = kc.parse_excel_table(table_file)
-    kc.write_design_rule_file(table_data, project_folder, project_name)
+    kc.write_design_rule_file(table_data, project_folder, project_name, factor_inner_layers=0.5)
 
-    assert compare_files("tests/clearance_example.kicad_dru", "tests/results/clearance_example.kicad_dru")
+    assert compare_files("tests/clearance_example.kicad_dru", "tests/results/clearance_example_factor_05.kicad_dru")
+
+def test_rules_factor_inner_layers_1():
+    """Generate and test rule generation."""
+    project_folder = os.path.dirname(os.path.realpath(__file__))
+
+    table_name = None
+    project_name = None
+
+    # Run script
+    table_file = kc.look_for_clearance_table_file(project_folder, table_name)
+    project_name = kc.look_for_kicad_project(project_folder, project_name)
+    table_data = kc.parse_excel_table(table_file)
+    kc.write_design_rule_file(table_data, project_folder, project_name, factor_inner_layers=1)
+
+    assert compare_files("tests/clearance_example.kicad_dru", "tests/results/clearance_example_factor_1.kicad_dru")
