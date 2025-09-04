@@ -51,14 +51,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#troubleshooting"><span class="sectnum">1.5 </span>Troubleshooting</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#module-kiclearance.kiclearance"><span class="sectnum">2 </span>KiClearance function documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.look_for_clearance_table_file"><code class="docutils literal notranslate"><span class="pre">look_for_clearance_table_file()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.look_for_kicad_project"><code class="docutils literal notranslate"><span class="pre">look_for_kicad_project()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.parse_excel_table"><code class="docutils literal notranslate"><span class="pre">parse_excel_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.usage"><code class="docutils literal notranslate"><span class="pre">usage()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kiclearance.kiclearance.write_design_rule_file"><code class="docutils literal notranslate"><span class="pre">write_design_rule_file()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="#kiclearance-function-documentation"><span class="sectnum">2 </span>KiClearance function documentation</a></li>
 </ul>
 
         </div>
@@ -126,73 +119,8 @@ Use this template as a guide: <a class="reference external" href="https://github
 <p>This program has so far been tested only on linux.</p>
 </section>
 </section>
-<section id="module-kiclearance.kiclearance">
-<span id="kiclearance-function-documentation"></span><h1><span class="sectnum">2 </span>KiClearance function documentation<a class="headerlink" href="#module-kiclearance.kiclearance" title="Link to this heading"></a></h1>
-<p>Generate clearance rules for kicad from a human-readable table.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="kiclearance.kiclearance.look_for_clearance_table_file">
-<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">look_for_clearance_table_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance_table_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#kiclearance.kiclearance.look_for_clearance_table_file" title="Link to this definition"></a></dt>
-<dd><p>Try to find the clearance table file in the given folder.</p>
-<p>This file has either the default name ‘clearance’ or a name given
-by the user. The file has to be: .ods, .xls or .xlsx.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>folder</strong> (<em>str</em>) – folder name to look for the clearance table file</p></li>
-<li><p><strong>clearance_table_file_name</strong> (<em>str</em>) – clearance table file name</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="kiclearance.kiclearance.look_for_kicad_project">
-<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">look_for_kicad_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kicad_project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#kiclearance.kiclearance.look_for_kicad_project" title="Link to this definition"></a></dt>
-<dd><p>Try to find the kicad project automatically if no project_name is given.</p>
-<p>This is done by searching for kicad_pro files.
-:param folder: folder of the kicad project
-:type folder: str
-:param kicad_project_name: Kicad project name, optional
-:type kicad_project_name: str</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="kiclearance.kiclearance.parse_excel_table">
-<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">parse_excel_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clearance_table_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#kiclearance.kiclearance.parse_excel_table" title="Link to this definition"></a></dt>
-<dd><p>Parse clearance data from the given clearance table file.</p>
-<p>Data will be stored in the following format:
-List of lists: [[Net_1, Net_2, distance], [Net_1, Net_3, distance], …]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>clearance_table_file</strong> (<em>str</em>) – clearance table file (.xls, .ods, .csv)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="kiclearance.kiclearance.usage">
-<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kiclearance.kiclearance.usage" title="Link to this definition"></a></dt>
-<dd><p>For terminal usage.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="kiclearance.kiclearance.write_design_rule_file">
-<span class="sig-prename descclassname"><span class="pre">kiclearance.kiclearance.</span></span><span class="sig-name descname"><span class="pre">write_design_rule_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clearance_table_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kicad_project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor_inner_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_track_distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#kiclearance.kiclearance.write_design_rule_file" title="Link to this definition"></a></dt>
-<dd><p>Write the rules to the design rule file (your_project.kicad_dru).</p>
-<p>A reduction factor for the inner layers can be applied, as there is less pollution, typically inner clearance can be reduced.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>clearance_table_data</strong> (<em>list</em>) – clearance table data</p></li>
-<li><p><strong>kicad_project_name</strong> (<em>str</em>) – kicad project name</p></li>
-<li><p><strong>factor_inner_layers</strong> (<em>float</em>) – distance factor for inner layers distance. Default is 1.0</p></li>
-<li><p><strong>min_track_distance</strong> (<em>float</em>) – minimum track distance in mm</p></li>
-<li><p><strong>folder</strong> (<em>str</em>) – directory</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="kiclearance-function-documentation">
+<h1><span class="sectnum">2 </span>KiClearance function documentation<a class="headerlink" href="#kiclearance-function-documentation" title="Link to this heading"></a></h1>
 </section>
 
 
