@@ -37,6 +37,7 @@ jobs:
             pylint $(git ls-files '*.py') 
           
             pip install mypy
+            pip install types-PyYAML
             mypy $(git ls-files '*.py')
       - name: Install packages for spell check and perform spell check
         run: |

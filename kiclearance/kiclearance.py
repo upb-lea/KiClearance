@@ -219,7 +219,7 @@ def look_for_kicad_project(folder: str, kicad_project_name: str | None = None) -
         else:
             return files[0].split(".")[0]
 
-def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_name: str, folder: str, clearance_table_file: str | None) -> None:
+def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_name: str, folder: str, clearance_table_file: str | None) -> str:
     """
     Read the net class names from the kicad project and update the labels in the clearance table file.
 
@@ -231,6 +231,8 @@ def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_
     :type clearance_table_file: str
     :param folder: kicad project folder name
     :type folder: str
+    :return: clearance table file path
+    :rtype: str
     """
     # default values to fill new table entries
     distance_to_default = 20
@@ -250,7 +252,7 @@ def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_
         # read existing clearance table file
         old_clearance_table = pd.read_excel(clearance_table_file, index_col=0)
     else:
-        # clearance_table_file is None: generate a new clearance table file
+        # new_or_updated_clearance_table_file is None: generate a new clearance table file
         old_clearance_table = pd.DataFrame(columns=["Default"], data=pd.Series([100], index=["Default"]), dtype=np.float64)
         clearance_table_file = os.path.join(folder, "clearance.ods")
     old_headers = list(old_clearance_table.columns)
@@ -282,6 +284,7 @@ def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_
     else:
         print("In case of already existing clearance table, no updates have been made. In case of not existing clearance table, a new one was initialized.\n"
               f"    see file: {clearance_table_file}")
+    return clearance_table_file
 
 
 def usage():
@@ -291,7 +294,7 @@ def usage():
             -h, --help: Prints this information,\n\
             -f, --project_folder (Optional): Path to the folder in which the project is located. Default: Folder in which this python script is located.\n\
             -n, --project_name (Optional): Name of the kicad project (file prefix). Default: Script will look for a file with .kicad_pro in the set folder.\n\
-            -t, --table_file (Optional): Name (and ending) of the file containing the distance values. Default name: 'clearance'.\n\
+            -t, --existing_clearance_table_file (Optional): Name (and ending) of the file containing the distance values. Default name: 'clearance'.\n\
             -i, --factor_inner_layers (Optional): Reduced factor for the inner layers. Default: 1.0\n\
             -d, --min_track_distance (Optional): minimum track distance between two tracks on the same potential. Default: 0.15 mm."
 

@@ -13,7 +13,7 @@ min_track_distance = None
 # Parse command line arguments
 try:
     opts, args = getopt.getopt(sys.argv[1:], "hf:n:t:i:d:",
-                               ["help", "project_folder=", "project_name=", "table_file=, 'factor_inner_layers=", "min_track_distance="])
+                               ["help", "project_folder=", "project_name=", "existing_clearance_table_file=, 'factor_inner_layers=", "min_track_distance="])
 except getopt.GetoptError as err:
     print(err)
     usage()
@@ -35,8 +35,9 @@ for o, a in opts:
         min_track_distance = float(a)
 
 # Run script
-table_file = look_for_clearance_table_file(project_folder, table_name)
+existing_clearance_table_file = look_for_clearance_table_file(project_folder, table_name)
 project_name = look_for_kicad_project(project_folder, project_name)
-update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_name=project_name, clearance_table_file=table_file, folder=project_folder)
-table_data = parse_excel_table(table_file)
+new_or_updated_clearance_table_file = update_net_classes_from_kicad_project_to_clearance_table_file(
+    kicad_project_name=project_name, clearance_table_file=existing_clearance_table_file, folder=project_folder)
+table_data = parse_excel_table(new_or_updated_clearance_table_file)
 write_design_rule_file(table_data, project_folder, project_name, factor_inner_layers=factor_inner_layers, min_track_distance=min_track_distance)
