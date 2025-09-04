@@ -1,8 +1,12 @@
 """Generate clearance rules for kicad from a human-readable table."""
-import pandas as pd
+# python libraries
 import os
 import importlib.util
+import yaml
+
+# 3rd party libraries
 import numpy as np
+import pandas as pd
 
 
 def write_design_rule_file(clearance_table_data: list, folder: str, kicad_project_name: str,
@@ -154,7 +158,7 @@ def parse_excel_table(clearance_table_file: str) -> list:
     return data
 
 
-def look_for_clearance_table_file(folder: str, clearance_table_file_name: str | None = None) -> str:
+def look_for_clearance_table_file(folder: str, clearance_table_file_name: str | None = None) -> str | None:
     """
     Try to find the clearance table file in the given folder.
 
@@ -180,8 +184,9 @@ def look_for_clearance_table_file(folder: str, clearance_table_file_name: str | 
             if file.startswith("~$"):
                 raise Exception("Please close the clearance table file and re-run the script.")
             return os.path.join(folder, file)
-
-    raise Exception(f"Clearance table file was not found in folder {folder}.")
+    # no file found: message and return None
+    print(f"Clearance table file was not found in folder {folder}.")
+    return None
 
 
 def look_for_kicad_project(folder: str, kicad_project_name: str | None = None) -> str:
@@ -213,6 +218,70 @@ def look_for_kicad_project(folder: str, kicad_project_name: str | None = None) -
             raise Exception(f"There are multiple kicad_projects found in {folder}. Please specify one project.")
         else:
             return files[0].split(".")[0]
+
+def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_name: str, folder: str, clearance_table_file: str | None) -> None:
+    """
+    Read the net class names from the kicad project and update the labels in the clearance table file.
+
+    In case of no clearance file is given as parameter, a new one is generated.
+    All fields are filled with default values. These need to be added.
+    :param kicad_project_name: kicad project name
+    :type kicad_project_name: str
+    :param clearance_table_file: name of the clearance table file
+    :type clearance_table_file: str
+    :param folder: kicad project folder name
+    :type folder: str
+    """
+    # default values to fill new table entries
+    distance_to_default = 20
+    default_space = 5
+
+    # Read net_classes from project file
+    with open(kicad_project_name + ".kicad_pro", 'r') as stream:
+        data_loaded = yaml.safe_load(stream)
+
+    net_classes = [d['name'] for d in data_loaded["net_settings"]["classes"]]
+
+    if net_classes.count("Default") < 1:
+        raise Exception("No net class named Default in project. Please define it")
+
+    # Read existing table or create a new one
+    if clearance_table_file is not None:
+        # read existing clearance table file
+        old_clearance_table = pd.read_excel(clearance_table_file, index_col=0)
+    else:
+        # clearance_table_file is None: generate a new clearance table file
+        old_clearance_table = pd.DataFrame(columns=["Default"], data=pd.Series([100], index=["Default"]), dtype=np.float64)
+        clearance_table_file = os.path.join(folder, "clearance.ods")
+    old_headers = list(old_clearance_table.columns)
+
+    new_clearance_table = pd.DataFrame(columns=net_classes, index=net_classes, dtype=np.float64)
+
+    is_message_table_changes: bool = False
+
+    for _, column_name in enumerate(net_classes):
+        for _, row_name in enumerate(net_classes[net_classes.index(column_name):]):
+            if row_name == "Default" or column_name == "Default":
+                new_clearance_table.at[column_name, row_name] = distance_to_default
+            else:
+                # check if values exist in the table and copy it to the new table
+                if old_headers.count(column_name) > 0 and old_headers.count(row_name) > 0:
+                    if np.isnan(old_clearance_table.at[column_name, row_name]):
+                        new_clearance_table.at[column_name, row_name] = old_clearance_table.at[row_name, column_name]
+                    else:
+                        new_clearance_table.at[column_name, row_name] = old_clearance_table.at[column_name, row_name]
+                else:
+                    # no values in old table available: write the default space into the table
+                    new_clearance_table.at[column_name, row_name] = default_space
+                    is_message_table_changes = True
+
+    new_clearance_table.to_excel(clearance_table_file)
+
+    if is_message_table_changes:
+        print("Clearance table file has been updated. Check table and adapt values.")
+    else:
+        print("In case of already existing clearance table, no updates have been made. In case of not existing clearance table, a new one was initialized.\n"
+              f"    see file: {clearance_table_file}")
 
 
 def usage():
