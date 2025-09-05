@@ -20,17 +20,6 @@ Install KiClearance directly from pyPI:
 Usage
 ---------------------------------------
 
-Create a table 'clearance.ods/xls/csv' containing clearance distances
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Create a table (name it clearance.ods/xls/csv) in your KiCad project directory with voltage clearances defined by your requirements (e.g. standards).
-Download and use this template as a guide: `clearance.ods <https://github.com/upb-lea/KiClearance/blob/main/examples/clearance.ods>`__.
-
-The table contains the distances from a potential to another in ``mm``. The same net distance is optional.
-The default distance is ``0.15 mm``.
-
-.. image:: docs/source/figures/table.png
-
 Define net classes in your KiCad project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Add the net classes to each connection in the circuit diagram.
@@ -42,8 +31,30 @@ Add the same net classes in the net classes of the PCB editor:
 
 .. image:: docs/source/figures/board_setup.png
 
-Run KiClearance
-~~~~~~~~~~~~~~~
+Run KiClearance to initially generate the clearance table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Navigate to the project folder with the KiCad project. Open a terminal and execute :
+
+::
+
+    python -m kiclearance
+
+Now a file ``clearance.ods`` is generated, which contains the human-readable clearance table.
+As of now, the table has been generated using fantasy values.
+
+
+Adapt the table 'clearance.ods/xls/csv' containing clearance distances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Update the table (clearance.ods/xls/csv) in your KiCad project directory with voltage clearances defined by your requirements (e.g. standards).
+
+The table contains the distances from a potential to another in ``mm``. The same net distance is optional.
+
+.. image:: docs/source/figures/table.png
+
+Run KiClearance again, to generate the final set of rules for KiCad
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Navigate to the project folder with the KiCad project and the clearance.ods/.xls/.csv file. Open a terminal and execute :
 
@@ -55,8 +66,8 @@ Now a file ``yourprojectname.kicad_dru`` is generated, which contains the rule s
 
 Open your KiCad project, the rule sets are now stored and you can start the routing.
 
-As the inner layers are exposed to less dirt and no air, the distance in the inner layers is halved by default.
-If this factor is to be set differently, this can be set with the following command (in the example: distance to 75%):
+As the inner layers are exposed to less dirt and no air, the distance in the inner layers can be set as optional with a scaling factor (defaults to 1).
+If this factor is to be set differently, this can be set with the following command (in the example: inner distance to 75% of outer distance):
 
 ::
 
@@ -101,5 +112,6 @@ Find the documentation `here <https://upb-lea.github.io/KiClearance/index.html>`
 Troubleshooting
 ---------------------------------------
 * This program has so far been tested only on Linux and Windows.
-* For performance reasons when routing, the number of NetClasses should be less than 10(or not exceed this to any significant degree)
+* For performance reasons when routing, the number of NetClasses should be less than 10 (or not exceed this to any significant degree)
+* Using another factor for the inner layers than 1 increases the rules and routing might be slower
 
