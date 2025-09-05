@@ -236,7 +236,8 @@ def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_
     """
     # default values to fill new table entries
     distance_to_default = 20
-    default_space = 5
+    distance_all_other_classes = 5
+    self_to_self_distance = 0.15
 
     # Read net_classes from project file
     with open(kicad_project_name + ".kicad_pro", 'r') as stream:
@@ -253,7 +254,7 @@ def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_
         old_clearance_table = pd.read_excel(clearance_table_file, index_col=0)
     else:
         # new_or_updated_clearance_table_file is None: generate a new clearance table file
-        old_clearance_table = pd.DataFrame(columns=["Default"], data=pd.Series([100], index=["Default"]), dtype=np.float64)
+        old_clearance_table = pd.DataFrame(columns=["Default"], data=pd.Series([self_to_self_distance], index=["Default"]), dtype=np.float64)
         clearance_table_file = os.path.join(folder, "clearance.ods")
     old_headers = list(old_clearance_table.columns)
 
@@ -263,18 +264,26 @@ def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_
 
     for _, column_name in enumerate(net_classes):
         for _, row_name in enumerate(net_classes[net_classes.index(column_name):]):
-            if row_name == "Default" or column_name == "Default":
-                new_clearance_table.at[column_name, row_name] = distance_to_default
-            else:
-                # check if values exist in the table and copy it to the new table
-                if old_headers.count(column_name) > 0 and old_headers.count(row_name) > 0:
-                    if np.isnan(old_clearance_table.at[column_name, row_name]):
-                        new_clearance_table.at[column_name, row_name] = old_clearance_table.at[row_name, column_name]
-                    else:
-                        new_clearance_table.at[column_name, row_name] = old_clearance_table.at[column_name, row_name]
+            # check if values exist in the table and copy it to the new table
+            if old_headers.count(column_name) > 0 and old_headers.count(row_name) > 0:
+                if np.isnan(old_clearance_table.at[column_name, row_name]):
+                    new_clearance_table.at[column_name, row_name] = old_clearance_table.at[row_name, column_name]
                 else:
-                    # no values in old table available: write the default space into the table
-                    new_clearance_table.at[column_name, row_name] = default_space
+                    new_clearance_table.at[column_name, row_name] = old_clearance_table.at[column_name, row_name]
+
+            # no values in old table available: write the default space into the table
+            else:
+                # check if column/row is default net class
+                if row_name == "Default" or column_name == "Default":
+                    new_clearance_table.at[column_name, row_name] = distance_to_default
+
+                # self-to-self distance
+                elif row_name == column_name:
+                    new_clearance_table.at[column_name, row_name] = self_to_self_distance
+
+                # all other net classes
+                else:
+                    new_clearance_table.at[column_name, row_name] = distance_all_other_classes
                     is_message_table_changes = True
 
     new_clearance_table.to_excel(clearance_table_file)
