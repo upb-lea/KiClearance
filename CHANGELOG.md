@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.2.1] - 2025-10-01
+### Fixed
+ - raise error in case of multiple net classes assigned to a single net
+
 ## [0.2.0] - 2025-09-05
 ### Added
  - Introduce clearance table generation and clearance automatic table update from kicad project
@@ -38,7 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
  - Initial release 
 
-[unreleased]: https://github.com/upb-lea/KiClearance/compare/0.2.0...HEAD
+[unreleased]: https://github.com/upb-lea/KiClearance/compare/0.2.1...HEAD
+[0.2.1]: https://github.com/upb-lea/KiClearance/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/upb-lea/KiClearance/compare/0.1.0...0.2.0
 [0.1.2]: https://github.com/upb-lea/KiClearance/compare/0.1.0...0.1.2
 [0.1.1]: https://github.com/upb-lea/KiClearance/compare/0.1.0...0.1.1

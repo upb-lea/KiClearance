@@ -243,6 +243,19 @@ def update_net_classes_from_kicad_project_to_clearance_table_file(kicad_project_
     with open(kicad_project_name + ".kicad_pro", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
 
+    # check for multiple assigned net classes to nets
+    net_class_assignments = data_loaded["net_settings"]["netclass_assignments"]
+    error_net_name_net_classes_list = []
+    for net_name, net_class_assignment in net_class_assignments.items():
+        if len(net_class_assignment) > 1:
+            error_net_name_net_classes_list.append((net_name, net_class_assignment))
+
+    if error_net_name_net_classes_list:
+        error_message = "The following nets have multiple assignments: \n"
+        for net_name_error, net_class_assignment_error in error_net_name_net_classes_list:
+            error_message += f" * '{net_name_error}' has multiple net classes assigned: {net_class_assignment_error}\n"
+        raise ValueError(error_message)
+
     net_classes = [d['name'] for d in data_loaded["net_settings"]["classes"]]
 
     if net_classes.count("Default") < 1:
