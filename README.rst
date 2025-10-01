@@ -92,7 +92,9 @@ To see help and options, run
 
 Tips and tricks
 ---------------------------------------
-If two network classes are assigned to a connection by mistake, this is displayed as an error in the Electrical Rules Checker (``Inspect`` -> ``Electrical Rules Checker``).
+Requires KiCad 9 or higher.
+
+If two network classes are assigned to a connection by mistake, `KiClearance` raises an error.
 
 KiCad works through the rules from bottom to top:  Once an applicable rule has been found, KiCad will not search for further rules. Keep this in mind when adding more own rules except from this script here.
 
