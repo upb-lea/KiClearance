@@ -115,5 +115,25 @@ Troubleshooting
 ---------------------------------------
 * This program has so far been tested only on Linux and Windows.
 * For performance reasons when routing, the number of NetClasses should be less than 10 (or not exceed this to any significant degree)
-* Using another factor for the inner layers than 1 increases the rules and routing might be slower
+* Using another factor for the inner layers than 1 increases the number of rules and routing might be slower
+
+Known Issue: 
+---------------------------------------
+KiClearance raises an error, here for the exemplary no longer existing net ``ExampleNet``, which has two nets classes assigned ``GND1`` and ``GND2``:    
+
+::
+
+    'ExampleNet' has multiple net classes assigned: ['GND1', 'GND2']
+
+As the ``ExampleNet`` no longer exists in the schematic, it seems like it is an not deleted orphan in the ``.kicad_pro`` file. To resolve this, open the project ``.kicad_pro`` file with an editor and delete these lines (needs adaption for your net names and net classes):
+
+::
+
+    "ExampleNet": [
+      "GND1",
+      "GND2",
+    ],
+    
+Save the file, and run ``KiClearance`` again.
+
 
