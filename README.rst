@@ -117,8 +117,8 @@ Troubleshooting
 * For performance reasons when routing, the number of NetClasses should be less than 10 (or not exceed this to any significant degree)
 * Using another factor for the inner layers than 1 increases the number of rules and routing might be slower
 
-Known Issue: 
----------------------------------------
+Known Issue: Old, non existing Nets raise an error
+---------------------------------------------------
 KiClearance raises an error, here for the exemplary no longer existing net ``ExampleNet``, which has two nets classes assigned ``GND1`` and ``GND2``:    
 
 ::
